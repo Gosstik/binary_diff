@@ -147,11 +147,29 @@ void Similar(const fs::path& dir1, const fs::path& dir2, double required_coef) {
       }
     }
   }
-
 }
 
-void Unique(const fs::path& dir1, const fs::path& dir2, double coef) {
+void Unique(const fs::path& dir1, const fs::path& dir2, double required_coef) {
+  std::vector<fs::path> paths_vec1 = GetDirPaths(dir1);
+  std::vector<fs::path> paths_vec2 = GetDirPaths(dir2);
 
+  // Make the greatest common subsequence.
+  for (const auto& path1 : paths_vec1) {
+    std::string data1 = GetFileContent(path1.c_str());
+    bool file_exists = false;
+    for (const auto& path2 : paths_vec2) {
+      std::string data2 = GetFileContent(path2.c_str());
+      double eq_coef = std::max(GetDifference(data1, data2),
+                                GetDifference(data2, data1));
+      if (eq_coef > required_coef) {
+        file_exists = true;
+        break;
+      }
+    }
+    if (!file_exists) {
+      std::cout << path1.c_str() << '\n';
+    }
+  }
 }
 
 bool ValidateInputFolder(const fs::path& dir) {
