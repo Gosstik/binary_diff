@@ -172,7 +172,7 @@ void Unique(const fs::path& dir1, const fs::path& dir2, double required_coef) {
   }
 }
 
-bool ValidateInputFolder(const fs::path& dir) {
+void ValidateInputFolder(const fs::path& dir) {
   if (!fs::exists(dir)) {
     std::cerr << "Path does not exists: " << dir.c_str() << '\n';
     exit(1);

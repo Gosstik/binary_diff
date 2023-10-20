@@ -8,11 +8,12 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_compile_options(-Wall -Wextra -Wpedantic -g -fno-omit-frame-pointer)
 
-#if(TOOLBOX_DEVELOPER)
-#    project_log("Turn warnings into errors.")
-#    add_compile_options(-Werror)
-#endif()
-#
+if(DEVELOPMENT_MODE)
+    project_log("Turn warnings into errors.")
+    add_compile_options(-Werror)
+endif()
+
+
 #if (TOOLBOX_COVERAGE)
 #    project_log("Turn off optimisation (flag -O0) for coverage.")
 #    add_compile_options(-O0)

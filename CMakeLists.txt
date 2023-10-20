@@ -3,13 +3,18 @@ project(1C_project)
 
 # --------------------------------------------------------------------
 
+# Options
+
+option(DEVELOPMENT_MODE "Enable development mode." ON)
+
+# --------------------------------------------------------------------
+
 # cmake setup
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
 
 include(Color)
 include(Logging)
-# include(Helpers)
 # include(BuildTest)
 # include(third-party/CodeCoverage)
 # include(Coverage)
@@ -17,18 +22,7 @@ include(Logging)
 #add_subdirectory(third_party)
 
 # This must be included after library so that third party code is not affected.
-#include(CompileOptions)
-
-# ----------------------------------------
-set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
-
-#add_compile_definitions()
-
-add_compile_options(-Wall -Wextra -Wpedantic -g -fno-omit-frame-pointer)
-# --------------------------------------
-
+include(CompileOptions)
 
 # Uncomment next lines to save binary files in special dirs.
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
@@ -37,9 +31,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 
 # --------------------------------------------------------------------
 
-# --------------------------------------------------------------------
-
-# Build app.
+# Build project.
 
 include_directories("src")
 add_subdirectory(src)
