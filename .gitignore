@@ -1,0 +1,16 @@
+# clion
+cmake-build*/
+
+# other
+bin/
+lib/
+
+# dev
+playground/
+debug.info
+tests/**/play.cpp
+coverage/
+tmp_test/
+
+# not implemented
+
